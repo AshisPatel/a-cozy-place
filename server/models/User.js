@@ -23,7 +23,11 @@ const userSchema = new Schema({
         trim: true
     },
     tasks: [taskSchema],
-    soundMixes: [soundMixSchema]
+    soundMixes: [soundMixSchema],
+    breakTime: {
+        type: Number, 
+        default: 0
+    }
 });
 
 // setup middleware to encrypt password 
