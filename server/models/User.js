@@ -1,31 +1,29 @@
 const mongoose = require ('mongoose');
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
-const TaskSchema = require('./Task');
+const taskSchema = require('./Task');
+const soundMixSchema = require('./SoundMix');
 
 const userSchema = new Schema({
     username: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        unique: true 
     },
     email: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        unique: true
     },
     password: {
         type: String,
         required: true,
         trim: true
     },
-    tasks: [TaskSchema],
-    soundMixes: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'SoundMix'
-        }
-    ]
+    tasks: [taskSchema],
+    soundMixes: [soundMixSchema]
 });
 
 // setup middleware to encrypt password 
